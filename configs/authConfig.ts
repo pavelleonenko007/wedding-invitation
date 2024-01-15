@@ -10,6 +10,7 @@ export const authConfig: AuthOptions = {
 				password: { label: 'Password', type: 'password' },
 			},
 			async authorize(credentials) {
+				console.log(credentials);
 				const user = {
 					username: 'admin',
 					password: 'evelina',
@@ -21,7 +22,6 @@ export const authConfig: AuthOptions = {
 					return {
 						name: 'Admin',
 						email: 'pavel.leonenko374@gmail.com',
-						image: undefined,
 						id: '1',
 					} as User;
 				}
@@ -31,6 +31,6 @@ export const authConfig: AuthOptions = {
 		}),
 	],
 	pages: {
-		signIn: '/login'
-	}
+		signIn: '/login',
+	},
 };

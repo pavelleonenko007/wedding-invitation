@@ -1,6 +1,5 @@
 import AuthProvider from '@/components/AuthProvider';
 import Navbar from '@/components/Navbar';
-import TestSession from '@/components/TestSession';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -21,7 +20,6 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={inter.className}>
 				<AuthProvider>
-					<TestSession />
 					<Navbar />
 					<div className="flex pt-16">{children}</div>
 				</AuthProvider>
