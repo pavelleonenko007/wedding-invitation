@@ -5,8 +5,6 @@ import { redirect } from 'next/navigation';
 export default async function index() {
 	const session = await getServerSession();
 
-	console.log({ session });
-
 	if (session) {
 		redirect('/dashboard');
 	}

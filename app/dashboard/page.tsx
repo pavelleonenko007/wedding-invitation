@@ -1,7 +1,13 @@
+import Container from '@/components/Container';
+import { GuestsTable } from '@/components/GuestsTable';
+
 export default async function index() {
 	return (
-		<main>
-			<h1>Dashboard</h1>
+		<main className="w-full">
+			<Container>
+				<h1>Dashboard</h1>
+				<GuestsTable />
+			</Container>
 		</main>
 	);
 }
