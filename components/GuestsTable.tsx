@@ -15,6 +15,7 @@ import {
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
 import * as React from 'react';
 
+import { removeGuest } from '@/app/dashboard/actions';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -35,15 +36,12 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table';
+import { Guest } from '@prisma/client';
+import Link from 'next/link';
 import { AddGuestDialog } from './AddGuestDialog';
 import { Badge } from './ui/badge';
-
-export type Guest = {
-	id: string;
-	name: string;
-	phone: string;
-	status: 'Придет' | 'Не придет' | 'Неизвестно';
-};
+import { Toaster } from './ui/toaster';
+import { useToast } from './ui/use-toast';
 
 export const columns: ColumnDef<Guest>[] = [
 	{
@@ -93,32 +91,53 @@ export const columns: ColumnDef<Guest>[] = [
 	{
 		accessorKey: 'phone',
 		header: 'Номер телефона',
-		cell: ({ row }) => <div className="lowercase">{row.getValue('phone')}</div>,
+		cell: ({ row }) => {
+			const phone = row.getValue('phone');
+			return (
+				<Link href={`tel:${phone}`} className="lowercase">
+					<>{phone}</>
+				</Link>
+			);
+		},
 	},
 	{
 		id: 'actions',
 		enableHiding: false,
 		cell: ({ row }) => {
-			const payment = row.original;
+			const { toast } = useToast();
+			const guestId = row.original.id;
 
 			return (
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button variant="ghost" className="h-8 w-8 p-0">
-							<span className="sr-only">Open menu</span>
+							<span className="sr-only">Открыть меню</span>
 							<MoreHorizontal className="h-4 w-4" />
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end">
-						<DropdownMenuLabel>Actions</DropdownMenuLabel>
+						<DropdownMenuLabel>Действия</DropdownMenuLabel>
 						<DropdownMenuItem
-							onClick={() => navigator.clipboard.writeText(payment.id)}
+							onClick={() => {
+								navigator.clipboard.writeText(`Говно`);
+								toast({
+									title: `Ссылка скопирована`,
+								});
+							}}
 						>
-							Copy payment ID
+							Скопировать ссылку гостя
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem>View customer</DropdownMenuItem>
-						<DropdownMenuItem>View payment details</DropdownMenuItem>
+						<DropdownMenuItem
+							onClick={async () => {
+								const removedGuest = await removeGuest(guestId);
+								toast({
+									title: `Гость ${removedGuest.name} удалён`,
+								});
+							}}
+						>
+							Удалить гостя
+						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
 			);
@@ -126,21 +145,7 @@ export const columns: ColumnDef<Guest>[] = [
 	},
 ];
 
-export function GuestsTable() {
-	const [data, setData] = React.useState<Guest[]>([
-		{
-			id: 'm5gr84i9',
-			name: 'Павел Леоненко',
-			phone: '+79127928207',
-			status: 'Придет',
-		},
-		{
-			id: '3u1reuv4',
-			name: 'Эвелина Мажитова',
-			phone: '+79127928207',
-			status: 'Придет',
-		},
-	]);
+export function GuestsTable({ data }: { data: Guest[] }) {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]
@@ -170,6 +175,7 @@ export function GuestsTable() {
 
 	return (
 		<div className="w-full">
+			<Toaster />
 			<div className="flex items-center justify-between py-4">
 				<Input
 					placeholder="Найти по имени..."
@@ -206,7 +212,7 @@ export function GuestsTable() {
 								})}
 						</DropdownMenuContent>
 					</DropdownMenu>
-					<AddGuestDialog setData={setData} />
+					<AddGuestDialog />
 				</div>
 			</div>
 			<div className="rounded-md border">
@@ -252,7 +258,7 @@ export function GuestsTable() {
 									colSpan={columns.length}
 									className="h-24 text-center"
 								>
-									No results.
+									Пока нет гостей
 								</TableCell>
 							</TableRow>
 						)}
