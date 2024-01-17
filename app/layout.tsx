@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
+			<body suppressHydrationWarning={true} className={inter.className}>
 				<AuthProvider>
 					<Navbar />
 					<div className="flex pt-16">{children}</div>
