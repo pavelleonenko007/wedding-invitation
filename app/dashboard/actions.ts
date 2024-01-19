@@ -52,8 +52,40 @@ export async function removeGuest(id: string): Promise<Guest> {
 		},
 	});
 
-	console.log(removedGuest);
 	revalidatePath('/dashboard');
 
 	return removedGuest;
+}
+
+export async function removeMultipleGuests(
+	ids: string[]
+): Promise<GuestResponse> {
+	if (ids.length < 1) {
+		return {
+			status: 'bad',
+			message: 'Выберите гостей, которых хотите удалить',
+		};
+	}
+
+	try {
+		const removedGuests = await prisma.guest.deleteMany({
+			where: {
+				id: {
+					in: ids,
+				},
+			},
+		});
+
+		revalidatePath('/dashboard');
+
+		return {
+			status: 'ok',
+			message: 'Выбранные гости удалены',
+		};
+	} catch (error) {
+		return {
+			status: 'bad',
+			message: 'Something went wrong!',
+		};
+	}
 }

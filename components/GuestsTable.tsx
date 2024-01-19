@@ -15,7 +15,7 @@ import {
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
 import * as React from 'react';
 
-import { removeGuest } from '@/app/dashboard/actions';
+import { removeGuest, removeMultipleGuests } from '@/app/dashboard/actions';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -50,7 +50,7 @@ import {
 	SelectValue,
 } from './ui/select';
 import { Toaster } from './ui/toaster';
-import { useToast } from './ui/use-toast';
+import { toast, useToast } from './ui/use-toast';
 
 export const columns: ColumnDef<Guest>[] = [
 	{
@@ -126,7 +126,9 @@ export const columns: ColumnDef<Guest>[] = [
 						<DropdownMenuLabel>Действия</DropdownMenuLabel>
 						<DropdownMenuItem
 							onClick={() => {
-								navigator.clipboard.writeText(`Говно`);
+								navigator.clipboard.writeText(
+									`${location.origin}/?id=${guestId}`
+								);
 								toast({
 									title: `Ссылка скопирована`,
 								});
@@ -185,6 +187,22 @@ export function GuestsTable({ data }: { data: Guest[] }) {
 			<Toaster />
 			<div className="flex items-center justify-between py-4">
 				<div className="flex gap-2">
+					{(table.getIsAllPageRowsSelected() ||
+						table.getIsSomePageRowsSelected()) && (
+						<Button
+							onClick={async () => {
+								const selectedRows = table.getSelectedRowModel().rows;
+								const idsToRemove = selectedRows.map((row) => row.original.id);
+								const response = await removeMultipleGuests(idsToRemove);
+								toast({
+									title: response.message,
+								});
+							}}
+							variant="destructive"
+						>
+							Удалить выбранные
+						</Button>
+					)}
 					<Input
 						placeholder="Найти по имени..."
 						value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
