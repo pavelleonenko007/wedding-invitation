@@ -39,7 +39,16 @@ import {
 import { Guest } from '@prisma/client';
 import Link from 'next/link';
 import { AddGuestDialog } from './AddGuestDialog';
-import { Badge } from './ui/badge';
+import StatusBadge from './StatusBadge';
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+} from './ui/select';
 import { Toaster } from './ui/toaster';
 import { useToast } from './ui/use-toast';
 
@@ -84,9 +93,7 @@ export const columns: ColumnDef<Guest>[] = [
 	{
 		accessorKey: 'status',
 		header: 'Статус',
-		cell: ({ row }) => (
-			<Badge className="bg-lime-500">{row.getValue('status')}</Badge>
-		),
+		cell: ({ row }) => <StatusBadge status={row.getValue('status')} />,
 	},
 	{
 		accessorKey: 'phone',
@@ -177,15 +184,45 @@ export function GuestsTable({ data }: { data: Guest[] }) {
 		<div className="w-full">
 			<Toaster />
 			<div className="flex items-center justify-between py-4">
-				<Input
-					placeholder="Найти по имени..."
-					value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-					onChange={(event) =>
-						table.getColumn('name')?.setFilterValue(event.target.value)
-					}
-					className="max-w-sm"
-				/>
-				<div className="flex gap-4">
+				<div className="flex gap-2">
+					<Input
+						placeholder="Найти по имени..."
+						value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+						onChange={(event) =>
+							table.getColumn('name')?.setFilterValue(event.target.value)
+						}
+						className="max-w-sm"
+					/>
+					<Select
+						onValueChange={(value) =>
+							table.getColumn('status')?.setFilterValue(value)
+						}
+						value={
+							(table.getColumn('status')?.getFilterValue() as string) ?? ''
+						}
+					>
+						<SelectTrigger className="max-w-sm">
+							<SelectValue placeholder="Выбрать статус" />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectGroup>
+								<SelectLabel>Выбрать статус</SelectLabel>
+								<SelectItem value="Придёт">Придёт</SelectItem>
+								<SelectItem value="Не придёт">Не придёт</SelectItem>
+								<SelectItem value="Неизвестно">Неизвестно</SelectItem>
+							</SelectGroup>
+						</SelectContent>
+					</Select>
+					<Button
+						variant="secondary"
+						onClick={() => {
+							table.resetColumnFilters();
+						}}
+					>
+						Сбросить фильтры
+					</Button>
+				</div>
+				<div className="flex gap-2">
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Button variant="outline" className="ml-auto">
