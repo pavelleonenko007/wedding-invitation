@@ -51,7 +51,7 @@ import {
 	SelectValue,
 } from './ui/select';
 import { Toaster } from './ui/toaster';
-import { toast, useToast } from './ui/use-toast';
+import { toast } from './ui/use-toast';
 
 export const columns: ColumnDef<Guest>[] = [
 	{
@@ -112,10 +112,8 @@ export const columns: ColumnDef<Guest>[] = [
 		id: 'actions',
 		enableHiding: false,
 		cell: ({ row }) => {
-			const { toast } = useToast();
 			const guest = row.original;
 			const guestId = guest.id;
-
 			return (
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
