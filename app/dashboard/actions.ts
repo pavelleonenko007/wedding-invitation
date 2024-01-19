@@ -28,6 +28,7 @@ export type NewGuest = {
 type GuestResponse = {
 	status: 'ok' | 'bad';
 	message: string;
+	guest?: Guest;
 };
 
 export async function addGuest(guestData: NewGuest): Promise<GuestResponse> {
@@ -88,4 +89,32 @@ export async function removeMultipleGuests(
 			message: 'Something went wrong!',
 		};
 	}
+}
+
+export async function modifyGuestById(
+	id: string,
+	data: { name: string; status: string; phone: string }
+): Promise<GuestResponse> {
+	const guest = await getGuestById(id);
+
+	if (!guest)
+		return {
+			status: 'bad',
+			message: 'Этого гостя нет в базе данных',
+		};
+
+	const updatedGuest = await prisma.guest.update({
+		where: {
+			id,
+		},
+		data,
+	});
+
+	revalidatePath('/dashboard');
+
+	return {
+		status: 'ok',
+		message: `Гость ${updatedGuest.name} успешно обновлен`,
+		guest: updatedGuest,
+	};
 }

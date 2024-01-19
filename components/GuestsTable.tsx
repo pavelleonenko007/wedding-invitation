@@ -39,6 +39,7 @@ import {
 import { Guest } from '@prisma/client';
 import Link from 'next/link';
 import { AddGuestDialog } from './AddGuestDialog';
+import { ModifyGuestDialog } from './ModifyGuestDialog';
 import StatusBadge from './StatusBadge';
 import {
 	Select,
@@ -112,7 +113,8 @@ export const columns: ColumnDef<Guest>[] = [
 		enableHiding: false,
 		cell: ({ row }) => {
 			const { toast } = useToast();
-			const guestId = row.original.id;
+			const guest = row.original;
+			const guestId = guest.id;
 
 			return (
 				<DropdownMenu>
@@ -137,7 +139,9 @@ export const columns: ColumnDef<Guest>[] = [
 							Скопировать ссылку гостя
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
+						<ModifyGuestDialog guest={guest} />
 						<DropdownMenuItem
+							className="text-red-500 hover:text-red-500"
 							onClick={async () => {
 								const removedGuest = await removeGuest(guestId);
 								toast({
