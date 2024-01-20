@@ -1,5 +1,4 @@
 import AuthProvider from '@/components/AuthProvider';
-import Navbar from '@/components/Navbar';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -18,10 +17,10 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body suppressHydrationWarning={true} className={inter.className}>
+			<body suppressHydrationWarning={true} className={inter.className + ' flex'}>
 				<AuthProvider>
-					<Navbar />
-					<div className="flex pt-16">{children}</div>
+					{/* <Navbar /> */}
+					<div className="flex flex-1">{children}</div>
 				</AuthProvider>
 			</body>
 		</html>
