@@ -12,7 +12,7 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
+import { ArrowUpDown, MoreHorizontal, UserMinus } from 'lucide-react';
 import * as React from 'react';
 
 import { removeGuest, removeMultipleGuests } from '@/app/dashboard/actions';
@@ -200,8 +200,10 @@ export function GuestsTable({ data }: { data: Guest[] }) {
 								});
 							}}
 							variant="destructive"
+							className="gap-2"
 						>
-							Удалить
+							<UserMinus />
+							<span className="hidden sm:inline">Удалить</span>
 						</Button>
 					)}
 					<Input
