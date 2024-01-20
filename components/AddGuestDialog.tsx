@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { PlusIcon } from 'lucide-react';
+import { UserPlus } from 'lucide-react';
 import { useId, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, FormField } from './ui/form';
@@ -54,8 +54,8 @@ export const AddGuestDialog = () => {
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button variant="default" className='gap-2'>
-					<PlusIcon />
+				<Button variant="default" className="gap-2">
+					<UserPlus />
 					<span className="hidden sm:inline">Добавить гостя</span>
 				</Button>
 			</DialogTrigger>
