@@ -186,6 +186,15 @@ export function GuestsTable({ data }: { data: Guest[] }) {
 	return (
 		<div className="w-full">
 			<Toaster />
+			<div className="w-full flex sm:hidden">
+				<Input
+					placeholder="Найти по имени..."
+					value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+					onChange={(event) =>
+						table.getColumn('name')?.setFilterValue(event.target.value)
+					}
+				/>
+			</div>
 			<div className="flex items-center justify-between py-4">
 				<div className="flex gap-2">
 					{(table.getIsAllPageRowsSelected() ||
@@ -212,7 +221,7 @@ export function GuestsTable({ data }: { data: Guest[] }) {
 						onChange={(event) =>
 							table.getColumn('name')?.setFilterValue(event.target.value)
 						}
-						className="max-w-sm"
+						className="hidden max-w-sm sm:flex"
 					/>
 					<Select
 						onValueChange={(value) => {
