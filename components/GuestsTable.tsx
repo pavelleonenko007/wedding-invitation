@@ -24,7 +24,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
-	DropdownMenuTrigger
+	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import {
@@ -201,7 +201,7 @@ export function GuestsTable({ data }: { data: Guest[] }) {
 							}}
 							variant="destructive"
 						>
-							Удалить выбранные
+							Удалить
 						</Button>
 					)}
 					<Input
@@ -213,9 +213,9 @@ export function GuestsTable({ data }: { data: Guest[] }) {
 						className="max-w-sm"
 					/>
 					<Select
-						onValueChange={(value) =>
-							table.getColumn('status')?.setFilterValue(value)
-						}
+						onValueChange={(value) => {
+							table.getColumn('status')?.setFilterValue(value);
+						}}
 						value={
 							(table.getColumn('status')?.getFilterValue() as string) ?? ''
 						}
@@ -232,14 +232,16 @@ export function GuestsTable({ data }: { data: Guest[] }) {
 							</SelectGroup>
 						</SelectContent>
 					</Select>
-					<Button
-						variant="secondary"
-						onClick={() => {
-							table.resetColumnFilters();
-						}}
-					>
-						Сбросить фильтры
-					</Button>
+					{table.getState().columnFilters.length > 0 && (
+						<Button
+							variant="secondary"
+							onClick={() => {
+								table.resetColumnFilters();
+							}}
+						>
+							Сбросить
+						</Button>
+					)}
 				</div>
 				<div className="flex gap-2">
 					<AddGuestDialog />
