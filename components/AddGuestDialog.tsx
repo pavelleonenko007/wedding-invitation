@@ -37,7 +37,7 @@ export const AddGuestDialog = () => {
 		defaultValues: {
 			name: '',
 			phone: '',
-			status: '',
+			status: 'Неизвестно',
 		},
 	});
 	const action: () => void = form.handleSubmit(async (data) => {
@@ -47,6 +47,8 @@ export const AddGuestDialog = () => {
 			console.error(response.message);
 			return;
 		}
+
+		form.reset();
 
 		setOpen(false);
 	});
