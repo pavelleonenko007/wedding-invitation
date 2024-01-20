@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { PlusIcon } from 'lucide-react';
 import { useId, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, FormField } from './ui/form';
@@ -53,7 +54,10 @@ export const AddGuestDialog = () => {
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button variant="default">Добавить гостя</Button>
+				<Button variant="default" className='gap-2'>
+					<PlusIcon />
+					<span className="hidden sm:inline">Добавить гостя</span>
+				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
@@ -123,7 +127,7 @@ export const AddGuestDialog = () => {
 						</div>
 					</form>
 				</Form>
-				<DialogFooter className='flex flex-row justify-start sm:justify-start'>
+				<DialogFooter className="flex flex-row justify-start sm:justify-start">
 					<Button form={formId} type="submit">
 						Добавить нового гостя
 					</Button>
