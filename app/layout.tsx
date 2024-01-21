@@ -16,11 +16,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body suppressHydrationWarning={true} className={inter.className + ' flex'}>
+		<html lang="en" className='w-full min-h-dvh'>
+			<body suppressHydrationWarning={true} className={inter.className + ' flex w-full min-h-dvh' }>
 				<AuthProvider>
 					{/* <Navbar /> */}
-					<div className="flex flex-1">{children}</div>
+					<div className="w-full min-h-dvh flex flex-1">{children}</div>
 				</AuthProvider>
 			</body>
 		</html>

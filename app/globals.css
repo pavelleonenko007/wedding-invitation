@@ -1,6 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Miama-Nueva";
+  src: url("../public/fonts/Miama-Nueva.ttf");
+}
+
+@font-face {
+  font-family: "Aquarelle";
+  src: url("../public/fonts/Aquarelle\ Regular.ttf");
+}
+
+@font-face {
+  font-family: "Baskerville";
+  src: url("../public/fonts/Baskerville.ttf");
+}
  
 @layer base {
   :root {
