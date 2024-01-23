@@ -93,7 +93,7 @@ export async function removeMultipleGuests(
 
 export async function modifyGuestById(
 	id: string,
-	data: { name: string; status: string; phone: string }
+	data: { name?: string; status?: string; phone?: string }
 ): Promise<GuestResponse> {
 	const guest = await getGuestById(id);
 

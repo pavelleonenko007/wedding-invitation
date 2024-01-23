@@ -1,7 +1,12 @@
 'use client';
+import { modifyGuestById } from '@/app/dashboard/actions';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import { ButtonHTMLAttributes } from 'react';
+import { Loader2 } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { ButtonHTMLAttributes, useState } from 'react';
+import { Alert } from './Alert';
+import { useToast } from './ui/use-toast';
 
 const lineAnim = {
 	initial: {
@@ -35,23 +40,53 @@ export default function CancelButton({
 	children,
 	...props
 }: ButtonHTMLAttributes<HTMLButtonElement>): JSX.Element {
+	const search = useSearchParams();
+	const { toast } = useToast();
+	const guestId = search.get('id') ?? '';
+	const [canceled, setCanceled] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const classNames = cn(
 		'w-full h-10 flex justify-center items-center text-sm text-[#947744] font-baskerville',
 		className
 	);
+	const action = async () => {
+		const response = await modifyGuestById(guestId, {
+			status: 'Не придёт',
+		});
+
+		if (response.status !== 'bad') {
+			setCanceled(true);
+		} else {
+			toast({
+				title: response.message,
+			});
+		}
+	};
 	return (
-		<button type="button" className={classNames} {...props}>
-			<div className="inline-flex flex-col overflow-hidden">
-				<motion.div variants={textAnim} initial="initial" animate="enter">
-					{children}
-				</motion.div>
-				<motion.div
-					variants={lineAnim}
-					initial="initial"
-					animate="draw"
-					className="w-full h-[1px] bg-[#947744]"
-				></motion.div>
-			</div>
-		</button>
+		<>
+			<Alert
+				open={canceled}
+				setIsOpen={() => setCanceled(false)}
+				title="Увы! Жаль, что вы не снами!"
+				description="Вы можете изменить своё решение до 23.03.2024"
+			/>
+			<button type="button" className={classNames} onClick={action} {...props}>
+				<div className="inline-flex flex-col overflow-hidden">
+					{isLoading ? (
+						<Loader2 className="h-4 w-4 animate-spin" />
+					) : (
+						<motion.div variants={textAnim} initial="initial" animate="enter">
+							{children}
+						</motion.div>
+					)}
+					<motion.div
+						variants={lineAnim}
+						initial="initial"
+						animate="draw"
+						className="w-full h-[1px] bg-[#947744]"
+					></motion.div>
+				</div>
+			</button>
+		</>
 	);
 }
