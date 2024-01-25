@@ -80,7 +80,7 @@ export default function Date() {
 				className="relative px-3 tracking-[0.1rem] normal-case"
 			>
 				<motion.div variants={borderAnim} initial="initial" animate="scale" className="absolute h-full w-[1px] bg-black top-0 left-0" />
-				в 15ч 30мин
+				В 15ч 30мин
 			</motion.div>
 		</>
 	);
