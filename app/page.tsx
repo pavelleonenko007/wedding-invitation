@@ -1,3 +1,4 @@
+'use client';
 import Ampersand from '@/components/Ampersand';
 import CancelButton from '@/components/CancelButton';
 import Container from '@/components/Container';
@@ -8,14 +9,18 @@ import Invitation from '@/components/Invitation';
 import Name from '@/components/Name';
 import NamesSeparator from '@/components/NamesSeparator';
 import WeddingWord from '@/components/WeddingWord';
+import { useSearchParams } from 'next/navigation';
 
 export default function Home() {
+	const search = useSearchParams();
+	const guestId = search.get('id') ?? null;
+	
 	return (
 		<main className="w-full h-[100dvh] flex justify-center items-center overflow-hidden">
 			<div className="fixed top-0 right-0 left-0 bottom-0 z-[-1] bg-paper opacity-50"></div>
 			<div className="absolute top-0 left-0"></div>
 			<Container>
-				<div className="flex flex-col justify-center gap-2 items-center w-full mx-auto sm:w-[400px]">
+				<div className={`flex flex-col justify-center ${guestId ? 'gap-2' : 'gap-8'} items-center w-full mx-auto sm:w-[400px]`}>
 					<div className="flex flex-col justify-center items-center relative">
 						<Name name="Эвелина" />
 						<div className="flex gap-3 items-center">
@@ -93,15 +98,15 @@ export default function Home() {
 							delayRatio={8}
 						/>
 						<Floral
-							className="absolute bottom-0 left-0 hidden -scale-y-[1] rotate-90 sm:-translate-x-[700%] sm:translate-y-[400%]"
+							className="absolute bottom-0 left-0 hidden -scale-y-[1] rotate-90 sm:flex sm:-translate-x-[700%] sm:translate-y-[400%]"
 							variant="branch3"
 							delayRatio={8}
 						/>
 					</div>
-					<div className="w-full flex flex-col gap-2">
+					{guestId && <div className="w-full flex flex-col gap-2">
 						<DrawingButton>Я приду</DrawingButton>
 						<CancelButton>Я не приду</CancelButton>
-					</div>
+					</div>}
 					<div className="relative max-w-[18rem] text-lg text-[#947744]">
 						<Invitation>
 							Ресторан «Палермо», ул. Игуменка, 86, Советский район, 
@@ -128,14 +133,11 @@ export default function Home() {
 							delayRatio={8}
 						/>
 						<Floral
-							className="absolute bottom-0 left-0 hidden translate-x-[250%] rotate-45 translate-y-[200%] sm:translate-x-[300%] sm:left-auto sm:right-0 sm:translate-y-[400%]"
+							className="absolute bottom-0 left-0 translate-x-[250%] rotate-45 translate-y-[200%] sm:translate-x-[300%] sm:left-auto sm:right-0 sm:translate-y-[400%]"
 							variant="branch"
 							delayRatio={6}
 						/>
 					</div>
-					{/* <div className="flex items-center gap-2">
-						<MDate />
-					</div> */}
 				</div>
 			</Container>
 		</main>
