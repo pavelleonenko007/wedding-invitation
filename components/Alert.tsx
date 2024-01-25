@@ -6,29 +6,34 @@ import {
 	AlertDialogDescription,
 	AlertDialogFooter,
 	AlertDialogHeader,
-	AlertDialogTitle
+	AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 
 export function Alert({
 	title,
 	description,
 	open = false,
-	setIsOpen = () => {}
+	setIsOpen = () => {},
 }: {
 	title?: string;
 	description?: string;
-	open?: boolean
-	setIsOpen?: () => void
+	open?: boolean;
+	setIsOpen?: () => void;
 }): JSX.Element {
 	return (
 		<AlertDialog open={open}>
-			<AlertDialogContent className='font-baskerville'>
+			<AlertDialogContent className="rounded-none sm:rounded-none font-baskerville">
 				<AlertDialogHeader>
 					<AlertDialogTitle>{title}</AlertDialogTitle>
 					<AlertDialogDescription>{description}</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
-					<AlertDialogAction onClick={setIsOpen} className='bg-[#947744] rounded-none'>Закрыть</AlertDialogAction>
+					<AlertDialogAction
+						onClick={setIsOpen}
+						className="bg-[#947744] rounded-none"
+					>
+						Закрыть
+					</AlertDialogAction>
 				</AlertDialogFooter>
 			</AlertDialogContent>
 		</AlertDialog>

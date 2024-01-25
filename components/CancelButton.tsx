@@ -67,8 +67,8 @@ export default function CancelButton({
 			<Alert
 				open={canceled}
 				setIsOpen={() => setCanceled(false)}
-				title="Увы! Жаль, что вы не снами!"
-				description="Вы можете изменить своё решение до 23.03.2024"
+				title="Жаль, что вы не с нами!"
+				description="Вы можете изменить своё решение до 23.03.2024, пройдя по этой же ссылке."
 			/>
 			<button type="button" className={classNames} onClick={action} {...props}>
 				<div className="inline-flex flex-col overflow-hidden">

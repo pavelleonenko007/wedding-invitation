@@ -104,7 +104,7 @@ export default function Home() {
 					</div>
 					<div className="relative max-w-[18rem] text-lg text-[#947744]">
 						<Invitation>
-							Ресторан «Палермо», ул. Игуменка, 86; Советский район, 
+							Ресторан «Палермо», ул. Игуменка, 86, Советский район, 
 							Челябинск
 						</Invitation>
 						<Floral
