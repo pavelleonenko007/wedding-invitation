@@ -46,7 +46,7 @@ export default function CancelButton({
 	const [canceled, setCanceled] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const classNames = cn(
-		'w-full h-10 flex justify-center items-center text-sm text-[#947744] font-baskerville',
+		'w-full h-[40rem] flex justify-center items-center text-[14rem] text-[#947744] font-baskerville',
 		className
 	);
 	const action = async () => {
@@ -73,7 +73,7 @@ export default function CancelButton({
 			<button type="button" className={classNames} onClick={action} {...props}>
 				<div className="inline-flex flex-col overflow-hidden">
 					{isLoading ? (
-						<Loader2 className="h-4 w-4 animate-spin" />
+						<Loader2 className="h-[16rem] w-[16rem] animate-spin" />
 					) : (
 						<motion.div variants={textAnim} initial="initial" animate="enter">
 							{children}

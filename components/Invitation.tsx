@@ -17,7 +17,7 @@ export default function Invitation({ children }: React.PropsWithChildren) {
 		}),
 	};
 	return (
-		<div className="font-baskerville text-center">
+		<div className="text-[18rem] leading-[24rem] font-baskerville text-center">
 			{words?.map((word, i) => (
 				<div key={`w-${i}`} className="overflow-hidden inline-flex">
 					<motion.span

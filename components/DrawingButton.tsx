@@ -75,7 +75,7 @@ export default function DrawingButton({
 		setIsLoading(false);
 	};
 	const classes = cn(
-		'relative flex justify-center items-center w-full h-10 p-[0.5rem] font-baskerville uppercase text-black tracking-[0.2rem] text-sm hover:bg-[#947744] hover:text-white',
+		'relative flex justify-center items-center w-full h-[40rem] p-[8rem] font-baskerville uppercase text-black tracking-[3.2rem] text-[14rem] hover:bg-[#947744] hover:text-white',
 		className
 	);
 	return (
@@ -117,7 +117,7 @@ export default function DrawingButton({
 					className="h-full w-[1px] bg-[#947744] absolute bottom-0 left-0 origin-bottom"
 				></motion.div>
 				{isLoading ? (
-					<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+					<Loader2 className="h-[16rem] w-[16rem] animate-spin" />
 				) : (
 					<motion.span variants={textAnim} initial="initial" animate="enter">
 						{children}

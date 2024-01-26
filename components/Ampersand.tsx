@@ -14,6 +14,6 @@ const animation = {
 
 export default function Ampersand() {
 	return (
-		<motion.span variants={animation} initial="initial" animate="enter" className="font-aquarelle text-2xl">&</motion.span>
+		<motion.span variants={animation} initial="initial" animate="enter" className="font-aquarelle text-[24rem] leading-[32rem]">&</motion.span>
 	);
 }

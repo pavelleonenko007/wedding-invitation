@@ -24,7 +24,7 @@ export default function Name({ name }: { name: string }) {
 	};
 
 	return (
-		<p className="font-baskerville text-3xl uppercase tracking-[0.7rem]">
+		<p className="font-baskerville text-[30rem] leading-[36rem] uppercase tracking-[11rem]">
 			{chars.map((char, i) => (
 				<motion.span
 					className="inline-flex"

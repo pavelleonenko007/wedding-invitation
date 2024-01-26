@@ -28,7 +28,7 @@ export default function WeddingWord() {
 			viewBox="0 0 211 94"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
-			className=' mt-3'
+			className='w-[211rem] h-[94rem] mt-[12rem]'
 		>
 			<motion.mask
 				variants={pathAnimation}

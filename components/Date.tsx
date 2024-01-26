@@ -38,7 +38,7 @@ export default function Date() {
 				initial="initial"
 				animate="show"
 				custom={4}
-				className="relative px-3 tracking-[0.2rem]"
+				className="relative text-[16rem] leading-[24rem] px-[12rem] tracking-[3.2rem]"
 			>
 				<motion.div variants={borderAnim} initial="initial" animate="scale" className="absolute h-full w-[1px] bg-black top-0 right-0" />
 				Суббота
@@ -49,7 +49,7 @@ export default function Date() {
 					initial="initial"
 					animate="show"
 					custom={1}
-					className="text-sm origin-center tracking-[0.2rem]"
+					className="text-[14rem] leading-[20rem] origin-center tracking-[3.2rem]"
 				>
 					Апрель
 				</motion.span>
@@ -57,7 +57,7 @@ export default function Date() {
 					variants={opacityAnim}
 					initial="initial"
 					animate="show"
-					className="text-5xl"
+					className="text-[48rem]"
 					custom={0}
 				>
 					06
@@ -67,7 +67,7 @@ export default function Date() {
 					initial="initial"
 					animate="show"
 					custom={3}
-					className="text-lg tracking-[0.2rem]"
+					className="text-[18rem] leading-[28rem] tracking-[3.2rem]"
 				>
 					2024
 				</motion.span>
@@ -77,7 +77,7 @@ export default function Date() {
 				initial="initial"
 				animate="show"
 				custom={2}
-				className="relative px-3 tracking-[0.1rem] normal-case"
+				className="relative text-[16rem] leading-[24rem] px-[12rem] tracking-[1.6rem] normal-case"
 			>
 				<motion.div variants={borderAnim} initial="initial" animate="scale" className="absolute h-full w-[1px] bg-black top-0 left-0" />
 				В 15ч 30мин
