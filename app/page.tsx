@@ -95,7 +95,7 @@ export default function Home() {
 							</Invitation>
 							<WeddingWord />
 							<Floral
-								className="w-[40rem] h-[40rem] absolute bottom-[10%] left-0 -translate-x-[100%] translate-y-[50%] sm:-translate-x-[400%]"
+								className="w-[40rem] h-[40rem] absolute bottom-[10%] left-0 -translate-x-[150%] translate-y-[50%] sm:-translate-x-[400%]"
 								variant="flower"
 								delayRatio={6}
 							/>
