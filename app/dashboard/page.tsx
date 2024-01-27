@@ -1,4 +1,3 @@
-import Container from '@/components/Container';
 import { GuestsTable } from '@/components/GuestsTable';
 import type { Metadata } from 'next';
 import { getGuests } from './actions';
@@ -11,13 +10,13 @@ export const metadata: Metadata = {
 export default async function index() {
 	// unstable_noStore();
 	const guests = await getGuests();
-	
+
 	return (
 		<main className="w-full">
-			<Container>
+			<div className="container px-4">
 				<h1>Dashboard</h1>
-				<GuestsTable data={guests}/>
-			</Container>
+				<GuestsTable data={guests} />
+			</div>
 		</main>
 	);
 }
