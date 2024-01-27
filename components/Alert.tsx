@@ -22,15 +22,15 @@ export function Alert({
 }): JSX.Element {
 	return (
 		<AlertDialog open={open}>
-			<AlertDialogContent className="rounded-none sm:rounded-none font-baskerville">
+			<AlertDialogContent className="p-[24rem] gap-[16rem] max-w-[512rem] rounded-none sm:rounded-none font-baskerville">
 				<AlertDialogHeader>
-					<AlertDialogTitle>{title}</AlertDialogTitle>
-					<AlertDialogDescription>{description}</AlertDialogDescription>
+					<AlertDialogTitle className='text-[18rem] leading-[28rem]'>{title}</AlertDialogTitle>
+					<AlertDialogDescription className='text-[14rem] leading-[20rem]'>{description}</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
 					<AlertDialogAction
 						onClick={setIsOpen}
-						className="bg-[#947744] rounded-none"
+						className="py-[8rem] px-[16rem] h-[40rem] bg-[#947744] rounded-none text-[14rem] leading-[20rem]"
 					>
 						Закрыть
 					</AlertDialogAction>
