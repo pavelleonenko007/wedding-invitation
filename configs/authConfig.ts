@@ -10,7 +10,6 @@ export const authConfig: AuthOptions = {
 				password: { label: 'Password', type: 'password' },
 			},
 			async authorize(credentials) {
-				console.log(credentials);
 				const user = {
 					username: 'admin',
 					password: 'evelina',
