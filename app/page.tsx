@@ -36,23 +36,23 @@ export default function Home() {
 	return (
 		<>
 			<style>{styles}</style>
-			<main className="w-full h-[100dvh] flex justify-center items-center overflow-hidden">
+			<main className="w-full min-h-[100dvh] flex justify-center items-center overflow-hidden">
 				<div className="fixed top-0 right-0 left-0 bottom-0 z-[-1] bg-paper opacity-50"></div>
 				<div className="absolute top-0 left-0"></div>
 				<Container>
 					<div
-						className={`flex flex-col justify-center ${
+						className={`flex flex-col justify-center py-[32rem] ${
 							guestId ? 'gap-[8rem]' : 'gap-[32rem]'
 						} items-center w-full mx-auto sm:w-[400rem]`}
 					>
 						<div className="flex flex-col justify-center items-center relative">
-							<Name name="Эвелина" />
+							<Name name="Павел" />
 							<div className="flex gap-[12rem] items-center">
 								<NamesSeparator side="right" />
 								<Ampersand />
 								<NamesSeparator side="left" />
 							</div>
-							<Name name="Павел" />
+							<Name name="Эвелина" />
 							<Floral
 								className="absolute top-0 left-0 -translate-x-[200%] translate-y-[200%] scale-x-[-1] sm:-translate-x-[300%] sm:translate-y-[100%]"
 								variant="branch2"
