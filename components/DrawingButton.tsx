@@ -85,7 +85,7 @@ export default function DrawingButton({
 				open={success}
 				setIsOpen={() => setSuccess(false)}
 				title="Спасибо, что вы с нами!"
-				description="Ждём вас в ресторане «Палермо» (Торжественный зал) по адресу ул. Игуменка (Меридиан), 86; Советский район, Челябинск 06.04.2024 в 15:30"
+				description="Ждём вас в ресторане «Палермо» (зал Торжеств) по адресу ул. Игуменка (Меридиан), 86; Советский район, Челябинск 06.04.2024 в 15:30"
 			/>
 			<button className={classes} onClick={action} {...props}>
 				<motion.div
