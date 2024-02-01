@@ -177,7 +177,7 @@ export function GuestsTable({ data }: { data: Guest[] }) {
 		onRowSelectionChange: setRowSelection,
 		initialState: {
 			pagination: {
-				pageSize: 100
+				pageSize: 200
 			}
 		},
 		state: {
