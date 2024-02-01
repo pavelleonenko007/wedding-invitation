@@ -1,4 +1,5 @@
 import { GuestsTable } from '@/components/GuestsTable';
+import Navbar from '@/components/Navbar';
 import type { Metadata } from 'next';
 import { getGuests } from './actions';
 
@@ -13,8 +14,9 @@ export default async function index() {
 
 	return (
 		<main className="w-full">
-			<div className="container px-4">
-				<h1>Dashboard</h1>
+			<div className="container flex flex-col gap-3 px-4">
+				<Navbar />
+				<h1 className=" text-3xl font-bold">Dashboard</h1>
 				<GuestsTable data={guests} />
 			</div>
 		</main>
